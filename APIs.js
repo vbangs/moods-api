@@ -30,7 +30,9 @@ module.exports = {
             .catch(function (error) {
                 console.log(error)
             })
-            .then(function () {})
+            .then(function (results) {
+                res.json(results)
+            })
         },
 
     getOtherTrends: (entry, lastDayNumber, countryCode) => {
