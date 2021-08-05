@@ -1,14 +1,12 @@
 const axios = require("axios");
-
-const BASE_URL = "https://google-trends.p.rapidapi.com"
 const BASE_URL_2 = "https://google-trends-related-search.p.rapidapi.com/"
 
 module.exports = {
-    getTrends: (reqId, country, results, trendsDate) => {
+    getTrends: (country, trendsDate) => {
 
         axios({
             method: 'GET',
-            url: BASE_URL + `/api/v1/DailyTrendingSearches/${reqId}/${country}/${results}/${trendsDate}`,
+            url: `https://google-trends.p.rapidapi.com/api/v1/DailyTrendingSearches/Ref12345/${country}/10/${trendsDate}`,
             headers: {
                 'x-rapidapi-key': 'f1119f81ccmsha50c5709e0b126fp10dce2jsnfdc1bbd9a593',
                 'x-rapidapi-host': 'google-trends.p.rapidapi.com'
@@ -31,10 +29,10 @@ module.exports = {
                 console.log(error)
             })
             .then(function (results) {
-                res.json(results)
+                return results
             })
         },
-
+            
     getOtherTrends: (entry, lastDayNumber, countryCode) => {
 
             axios({
@@ -57,7 +55,6 @@ module.exports = {
                 .catch(function (error) {
                     console.log(error)
                 })
-                .then(function () {})
             },
 
     getSentimentAnalyzer: (entry) => {
@@ -81,6 +78,5 @@ module.exports = {
                 .catch(function (error) {
                     console.log(error)
                 })
-                .then(function () {})
-    }
+    },
 }
